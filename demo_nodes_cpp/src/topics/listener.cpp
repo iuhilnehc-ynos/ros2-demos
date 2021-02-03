@@ -42,7 +42,12 @@ public:
     // publishers.
     // Note that not all publishers on the same topic with the same type will be compatible:
     // they must have compatible Quality of Service policies.
-    sub_ = create_subscription<std_msgs::msg::String>("chatter", 10, callback);
+    rclcpp::SubscriptionOptionsBase options_base;
+    options_base.content_filter_options.filter_expression
+      = "data MATCH 'Hello World: 5' or data MATCH 'Hello World: %0'";
+    options_base.content_filter_options.expression_parameters = {"10"};
+    rclcpp::SubscriptionOptionsWithAllocator<std::allocator<void>> subscription_options(options_base);
+    sub_ = create_subscription<std_msgs::msg::String>("chatter", 10, callback, subscription_options);
   }
 
 private:
