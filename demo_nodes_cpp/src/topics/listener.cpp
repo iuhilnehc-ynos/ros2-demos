@@ -38,21 +38,23 @@ public:
       {
         RCLCPP_INFO(this->get_logger(), "I heard: [%s]", msg->data.c_str());
 
-        std::string filter_expression;
-        std::vector<std::string> expression_parameters;
-        sub_->get_cft_expression_parameters(filter_expression, expression_parameters);
-        RCLCPP_INFO(this->get_logger(), "filter_expression: [%s]", filter_expression.c_str());
-        for(auto &expression_parameter: expression_parameters) {
-          RCLCPP_INFO(this->get_logger(), "expression_parameter: [%s]", expression_parameter.c_str());
-        }
+        // To get filter expression
+        // std::string filter_expression;
+        // std::vector<std::string> expression_parameters;
+        // sub_->get_cft_expression_parameters(filter_expression, expression_parameters);
+        // RCLCPP_INFO(this->get_logger(), "filter_expression: [%s]", filter_expression.c_str());
+        // for(auto &expression_parameter: expression_parameters) {
+        //   RCLCPP_INFO(this->get_logger(), "expression_parameter: [%s]", expression_parameter.c_str());
+        // }
 
-        std::string filter_expression_new = "data MATCH %0";
-        std::string expression_parameter = "'Hello World: 8'";
-        RCLCPP_INFO(this->get_logger(), "update cft expression parameter : [%s][%s]",
-          filter_expression_new.c_str(), expression_parameter.c_str());
-        sub_->set_cft_expression_parameters(filter_expression_new, {expression_parameter});
+        // To update with a new filter expression
+        // std::string filter_expression_new = "data MATCH %0";
+        // std::string expression_parameter = "'Hello World: 8'";
+        // RCLCPP_INFO(this->get_logger(), "update cft expression parameter : [%s][%s]",
+        //   filter_expression_new.c_str(), expression_parameter.c_str());
+        // sub_->set_cft_expression_parameters(filter_expression_new, {expression_parameter});
 
-        // expression_parameters can't be reset by an empty string.
+        // (HOW TO RESET SUBSCRIPTION) expression_parameters can't be reset by an empty string.
         // [listener-2] [D0028|SET CF PARAMS]DDS_SqlFilterparse:syntax error, unexpected $end
         // [listener-2] [D0028|SET CF PARAMS]DDS_SqlFilter_compile:SQL compiler failed with error-code: -1 (Syntax error)
         // [listener-2] [D0028|SET CF PARAMS]PRESContentFilteredTopic_updateFilterExpression:content filter compile error 1
