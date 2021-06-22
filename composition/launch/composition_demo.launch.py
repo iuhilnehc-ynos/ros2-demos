@@ -29,6 +29,10 @@ def generate_launch_description():
             composable_node_descriptions=[
                 ComposableNode(
                     package='composition',
+                    plugin='composition::CustomTalker',
+                    name='custom_talker'),
+                ComposableNode(
+                    package='composition',
                     plugin='composition::Talker',
                     name='talker'),
                 ComposableNode(
