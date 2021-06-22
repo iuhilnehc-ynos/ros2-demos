@@ -20,6 +20,9 @@ find_package(std_msgs REQUIRED)
 
 include_directories(include)
 
+# it worked
+add_subdirectory(src/custom_talker_component)
+
 # create ament index resource which references the libraries in the binary dir
 set(node_plugins "")
 
@@ -200,5 +203,9 @@ install(DIRECTORY
   launch
   DESTINATION share/${PROJECT_NAME}
 )
+
+
+# it also worked here
+# add_subdirectory(src/custom_talker_component)
 
 ament_package()
